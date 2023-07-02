@@ -9,12 +9,14 @@ export interface member {
     team_name: string
   }
 
-export enum team {
-  teamA = 'チームA',
-  teamK = 'チームK',
-  teamB = 'チームB',
-  team4 = 'チーム4',
-  E = '研究生',
-  S = '支配人',
-  all = 'ALL'
-}
+// export enum team {
+//   teamA = 'チームA',
+//   teamK = 'チームK',
+//   teamB = 'チームB',
+//   team4 = 'チーム4',
+//   E = '研究生',
+//   S = '支配人',
+//   all = null
+// }
+
+export type team = 'チームA' | 'チームK'| 'チームB' | 'チーム4' | '研究生' | '支配人' | null

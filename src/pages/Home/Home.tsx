@@ -1,18 +1,20 @@
 import React from "react"
-import { team } from '../../model'
+import {useSearchParams} from "react-router-dom"
 import { member } from '../../model'
 import MemberCard from "./MemberCard"
 import CategoryPop from "./CategoryPop"
 
 export default function Home(){
+    const [searchParams, setSeachParams] = useSearchParams()
     const [memberData, setMemberData] = React.useState<member[]>([])
     const [isPop, setIsPop] = React.useState<boolean>(false)
-    const [teamFilter, setTeamFilter] = React.useState<team>(team.all)
+
+    const teamFilter = searchParams.get('team_id')
     
     function getMemberData(){
      return (
         // fetch('https://localhost:8000/api/member/list/')
-        fetch('http://localhost:8000/api/member/list/')
+        fetch('http://localhost:8000/api/member/list')
           .then(result => result.json())
           .then(json => json.data)
      )
@@ -32,7 +34,7 @@ export default function Home(){
     },[])
   
     function getFilterMemberData(){
-      if(teamFilter == team.all){
+      if(teamFilter === null){
         return memberData
       }
       return memberData.filter(member => member.team_name === teamFilter)
@@ -44,7 +46,7 @@ export default function Home(){
     
     return (
         <div>
-            <CategoryPop isPop={isPop} setIsPop={setIsPop} setTeamFilter={setTeamFilter}/>
+            <CategoryPop isPop={isPop} setIsPop={setIsPop} setSeachParams={setSeachParams}/>
             <h1 className='title'>MEMBER</h1>
             <div className='btn-container'>
             <button className='btn' onClick={()=>setIsPop(true)}>チームから探す</button>
