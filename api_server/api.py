@@ -45,7 +45,10 @@ async def getMemberDetail(
 
     soup = BeautifulSoup(response.text, 'lxml')
     memberDetail['teamIcon'] = 'https://www.akb48.co.jp' + soup.select_one('.teamIcon').find("img")['src']
-    memberDetail['teamMedal'] = 'https://www.akb48.co.jp' + soup.select_one('.teamMedal').find("img")['src']
+    try:
+        memberDetail['teamMedal'] = 'https://www.akb48.co.jp' + soup.select_one('.teamMedal').find("img")['src']
+    except AttributeError:
+        memberDetail['teamMedal'] = None
     memberDetail['memberImg'] = soup.select_one('.memberImg').find("img")['src']
     memberDetail['jpname'] = soup.select_one('.jpname').text
     memberDetail['name'] = soup.select_one('.name').text
@@ -62,8 +65,14 @@ async def getMemberDetail(
             memberDetail[deatailProfs[i]] = detailProf.text
     
     shareBlk = soup.select_one('.shareBlk')
-    memberDetail['twitter'] = shareBlk.select_one('.svgTw').find('a')['href']
-    memberDetail['instagram'] = shareBlk.select_one('.svgIg').find('a')['href']
+    try:
+        memberDetail['twitter'] = shareBlk.select_one('.svgTw').find('a')['href']
+    except AttributeError:
+        memberDetail['twitter'] = None
+    try:
+        memberDetail['instagram'] = shareBlk.select_one('.svgIg').find('a')['href']
+    except AttributeError:
+        memberDetail['instagram'] = None
     
     return {"result": "ok", "data": memberDetail}
 

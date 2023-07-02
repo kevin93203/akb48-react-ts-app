@@ -9,6 +9,21 @@ export interface member {
     team_name: string
   }
 
+export interface memberDetail {
+  teamIcon: string
+  teamMedal: string | null
+  memberImg: string
+  jpname: string
+  name: string
+  enName: string
+  agency: string
+  nickname: string
+  birthday: string
+  birthPlace: string
+  twitter : string | null
+  instagram: string | null
+}
+
 // export enum team {
 //   teamA = 'チームA',
 //   teamK = 'チームK',

@@ -1,0 +1,137 @@
+.member-detail{
+    background-color: white;
+    margin: 0 5vw 50px 5vw;
+    display: flex;
+    align-items: center;;
+    position: relative;
+    padding: 30px;
+    border-radius: 40px;
+}
+
+.member-detail-team {
+    width: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: -40px;
+    right: 50px;
+}
+
+.member-detail-team img{
+    max-width: 100%;
+}
+
+.member-img-container {
+    flex:1;
+    margin-right: 56px;
+    /* width: 35vw; */
+}
+
+.member-img {
+    width: 100%;
+}
+
+.member-info {
+    flex: 2;
+}
+
+.member-info-names {
+    color: rgb(246, 118, 166);
+    margin-bottom: 25px;
+}
+
+.member-info-name,
+.member-info-jpname,
+.member-info-enName {
+    margin: 0;
+}
+
+.member-info-name {
+    font-size: 3rem;
+}
+
+.member-info-jpname {
+    font-size: 1.1rem;
+}
+
+.member-info-enName {
+    font-size: 1.7rem;
+}
+
+.member-other-info {
+    margin-bottom: 25px;
+    display: grid;
+    background-color: #FFFAFB;
+    grid-template-columns: 1fr 4fr;
+    padding: 22px;
+    font-size: 12px;
+    grid-row-gap: 10px;
+    grid-column-gap: 20px;
+    border-radius: 10px;
+}
+
+.member-other-info p {
+    margin: 0px;
+}
+
+.member-other-info-title {
+    color: rgb(246, 118, 166);
+    font-weight: 700;
+}
+
+.member-social-medias {
+    display: flex;
+    gap: 30px;
+}
+
+.member-social-medias a {
+    color: rgb(246, 118, 166);
+    font-size: 50px;
+}
+
+.location-nav {
+    margin-top: 20px;
+    margin-left:5vw;
+    display: flex;
+    gap: 10px;
+    font-size: 12px;
+}
+
+.location-nav a {
+    text-decoration: none;
+    color: black;
+    transition: all 0.5s;
+}
+
+.location-nav a:hover {
+    opacity: 0.5;
+}
+
+@media (max-width:900px) {
+    .member-detail {
+        flex-direction: column;
+    }
+    .member-info-names {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .member-other-info {
+        grid-template-columns: 1fr 3fr;
+    }
+
+    .member-info-name {
+        font-size: 2.5rem;
+    }
+    
+    .member-info-jpname {
+        font-size: 1rem;
+    }
+    
+    .member-info-enName {
+        font-size: 1.5rem;
+    }
+}

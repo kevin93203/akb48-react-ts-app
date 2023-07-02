@@ -3,6 +3,7 @@ import {useSearchParams} from "react-router-dom"
 import { member } from '../../model'
 import MemberCard from "./MemberCard"
 import CategoryPop from "./CategoryPop"
+import './Home.css'
 
 export default function Home(){
     const [searchParams, setSeachParams] = useSearchParams()
@@ -42,10 +43,10 @@ export default function Home(){
   
     const filterMemberData = getFilterMemberData()
    
-    const memberCards = filterMemberData.map((member) => <MemberCard key={member.id} member={member}/>)
+    const memberCards = filterMemberData.map((member) => <MemberCard key={member.id} member={member} searchParams={searchParams}/>)
     
     return (
-        <div>
+        <>
             <CategoryPop isPop={isPop} setIsPop={setIsPop} setSeachParams={setSeachParams}/>
             <h1 className='title'>MEMBER</h1>
             <div className='btn-container'>
@@ -54,6 +55,6 @@ export default function Home(){
             <div className='memeber-cards'>
             {memberCards}
             </div>
-        </div>
+        </>
     )
 }
