@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 import uvicorn
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+import asyncio
 
 app = FastAPI()
 
@@ -78,13 +79,19 @@ async def getMemberSNSTimeLines(
     url = "https://www.akb48.co.jp/public/api/snstimelines/"
 
     headers = {
-        "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"
     }
 
     data = snsQuerySetting.dict()
 
-    response = requests.post(url,headers=headers,data=data,verify=False)
-    return response.json()
+    try:
+        loop = asyncio.get_event_loop()
+        response = await loop.run_in_executor(None,lambda: requests.post(url=url,headers=headers,data=data,verify=False))
+        # response = await requests.post(url, headers=headers, data=data, verify=False)
+        response.raise_for_status()  # 確認請求成功
+        return response.json()
+    except (requests.RequestException, ValueError) as e:
+        return {"error": str(e)}
 
 if __name__ == "__main__":
     # uvicorn.run("api:app", port=8000, reload=True, host='0.0.0.0', ssl_certfile='./src/assets/localhost.pem', ssl_keyfile='./src/assets/localhost-key.pem')
