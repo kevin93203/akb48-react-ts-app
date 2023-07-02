@@ -1,5 +1,5 @@
 import "./CategoryPop.css"
-import { team } from "../model"
+import { team } from "../../model"
 
 interface Props {
     isPop: boolean

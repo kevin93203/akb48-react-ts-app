@@ -1,4 +1,4 @@
-import { member } from "../model"
+import { member } from "../../model"
 import "./MemberCard.css"
 
 interface Props {

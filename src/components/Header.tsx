@@ -1,7 +1,7 @@
 import Logo from './Logo'
-import "./Navbar.css"
+import "./Header.css"
 
-export default function Navbar(){
+export default function Header(){
     return (
         <nav className='navbar'>
             <Logo/>
